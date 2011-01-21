@@ -1,7 +1,12 @@
 require 'helper'
 
+class Foo
+  def bar
+  end.private!
+end
+
 class TestRubyPrivate < Test::Unit::TestCase
-  should "probably rename this file and start testing for real" do
-    flunk "hey buddy, you should probably rename this file and start testing for real"
+  test "declare a method private with Kernel#private!" do
+    assert Foo.private_methods.any? {|m| m == 'bar' }
   end
 end
